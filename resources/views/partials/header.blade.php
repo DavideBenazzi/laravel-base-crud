@@ -13,6 +13,9 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ route('classrooms.index') }}">Classrooms</a>
             </li>            
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('classrooms.create') }}">New Classroom</a>
+            </li>            
           </ul>
         </div>
     </nav>
