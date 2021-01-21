@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Classroom;
 
 class ClassroomController extends Controller
 {
@@ -13,7 +14,8 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        //
+        $classrooms = classroom::all();
+        return view('classrooms.index' , compact('classrooms'));
     }
 
     /**
@@ -45,7 +47,8 @@ class ClassroomController extends Controller
      */
     public function show($id)
     {
-        //
+        $classroom = Classroom::find($id);
+        return view('classrooms.show' , compact('classroom'));
     }
 
     /**
