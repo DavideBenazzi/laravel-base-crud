@@ -37,6 +37,22 @@ class ClassroomController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        // VALIDATION
+        $request->validate([
+            'name' => 'required|unique:classrooms|max:10',
+            'description' => 'required',
+        ]);
+        // SAVE DATA TO DB
+        $classroom = new Classroom();
+        $classroom->name = $data['name'];
+        $classroom->description = $data['description'];
+        $saved = $classroom->save();
+        // REDIRECT
+        if ($saved) {
+            return redirect()->route('classrooms.show' , $classroom->id);
+        }
+
+
     }
 
     /**
