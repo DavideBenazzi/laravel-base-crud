@@ -44,15 +44,15 @@ class ClassroomController extends Controller
         ]);
         // SAVE DATA TO DB
         $classroom = new Classroom();
-        $classroom->name = $data['name'];
-        $classroom->description = $data['description'];
+        // $classroom->name = $data['name'];
+        // $classroom->description = $data['description'];
+        $classroom->fill($data);  //<---- need fillable in model!!!
+
         $saved = $classroom->save();
         // REDIRECT
         if ($saved) {
             return redirect()->route('classrooms.show' , $classroom->id);
         }
-
-
     }
 
     /**
@@ -75,7 +75,8 @@ class ClassroomController extends Controller
      */
     public function edit($id)
     {
-        //
+        $classroom = Classroom::find($id);
+        return view('classrooms.edit' , compact('classroom'));
     }
 
     /**
