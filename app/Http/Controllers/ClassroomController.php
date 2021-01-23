@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Classroom;
+use Illuminate\Validation\Rule;
 
 class ClassroomController extends Controller
 {
@@ -88,7 +89,26 @@ class ClassroomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // DATA FROM FORM
+        $data = $request->all();
+        // SPECIFIC INSTANCE
+        $classroom = Classroom::find($id);
+        // VALIDATION
+        $request->validate([
+            'name' => [
+                'required',
+                Rule::unique('classrooms')->ignore($id),
+                'max:10',
+            ],
+            'description' => 'required',
+        ]);
+
+        // DATABASE UPDATE
+        $updated = $classroom->update($data); //<---- need fillable in model!!! 
+
+        if($updated) {
+            return redirect()->route('classrooms.show', $id);
+        }
     }
 
     /**
@@ -99,6 +119,13 @@ class ClassroomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $classroom = Classroom::find($id);
+        // REFERENCE FOR AN ALERT
+        $ref = $classroom->name;
+        $deleted = $classroom->delete();
+
+        if ($deleted) {
+            return redirect()->route('classrooms.index')->with('deleted' , $ref);
+        }
     }
 }

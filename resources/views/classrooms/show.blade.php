@@ -4,6 +4,7 @@
     <div class='container mb-5'>
         <h1>{{ $classroom->name }} detail</h1>
         <h6>ID: {{ $classroom->id }}</h6>
+        <a class='btn btn-primary' href="{{ route('classrooms.edit' , $classroom->id) }}">Edit</a>
         <hr>
 
         <p>{{ $classroom->description }}</p>

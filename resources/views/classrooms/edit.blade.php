@@ -28,7 +28,7 @@
                 <textarea class='form-control' name='description'>{{ old('description' , $classroom->description) }}</textarea>
             </div>
             <div class="form-group">
-                <input class='btn btn-primary' type="submit" value='Edit'>
+                <input class='btn btn-primary' type="submit" value='Update'>
             </div>
         </form>
     </div>
