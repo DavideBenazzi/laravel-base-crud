@@ -41,5 +41,9 @@
                 @endforeach
             </tbody>
         </table>
+        {{-- PAGINATION --}}
+        <div>
+            {{ $classrooms->links() }}
+        </div>
     </div>
 @endsection

@@ -10,7 +10,7 @@
         <p>{{ $classroom->description }}</p>
         <hr>
 
-        <div class="mb-3">Created at: {{ $classroom->created_at }}</div>
-        <div class="mb-3">Updated at: {{ $classroom->updated_at }}</div>
+        <div class="mb-3">Created at: {{ $classroom->created_at->isoFormat('dddd DD/MM/YYYY') }}</div>
+        <div class="mb-3">Updated at: {{ $classroom->updated_at->diffForHumans() }}</div>
     </div>
 @endsection

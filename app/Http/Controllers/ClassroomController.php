@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Classroom;
 use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 
 class ClassroomController extends Controller
 {
@@ -15,7 +16,9 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        $classrooms = classroom::all();
+        // $classrooms = classroom::all(); //<---- original call
+        $classrooms = classroom::paginate(4); //<---- call with a pagination limit
+        
         return view('classrooms.index' , compact('classrooms'));
     }
 
